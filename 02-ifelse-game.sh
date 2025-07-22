@@ -16,13 +16,12 @@ sleep 1
 echo "You have to choose a number to defeat the beast."
 
 beast1_num=$((RANDOM % 2))
-#echo "beast number is $beast1_num"
 
 echo -n "Choose a number (0/1): "
 read -r user_num1  
 
 if ! [[ $user_num1 =~ ^[01]$ ]]; then
-    echo "Invalid input. Please enter 0 or 1."
+    echo "Invalid input. Number should be 0 or 1."
     exit 1
 elif [[ $user_num1 -eq $beast1_num ]]; then
     echo -e "Congratulations! You Won!\n"
@@ -43,7 +42,7 @@ echo -n "Choose a number (0-2): "
 read -r user_num2
 
 if ! [[ $user_num2 =~ ^[0-2]$ ]]; then
-    echo "Invalid input. Please enter a number between 0 and 2."
+    echo "Invalid input. Number should be 0,1 or 2."
     exit 1
 elif [[ $user_num2 -eq $beast2_num ]]; then
     echo "Congratulations! You Won the Game!"
