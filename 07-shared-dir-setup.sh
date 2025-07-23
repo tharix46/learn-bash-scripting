@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+
 #########################################
 # this script sets up a shared directory with specified ownership and permissions.
 # to run this script:
