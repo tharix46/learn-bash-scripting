@@ -1,3 +1,3 @@
-# Shell Scripting
+# Bash Scripting
 
-This repository contains a set of shell scripts I wrote while learning Bash scripting. These scripts cover basic concepts of shell scripting.
+This repository contains a set of Bash scripts I wrote while learning Bash scripting. These scripts cover fundamental Bash scripting concepts.
