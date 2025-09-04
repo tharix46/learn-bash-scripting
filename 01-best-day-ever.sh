@@ -26,4 +26,5 @@ sleep 1
 echo "It's $date_time"
 echo "You're logged in as user $user"
 echo -e "You're in the $current_dir directory\n"
+curl -sL https://wttr.in/ | head -n 7
 sleep 1
