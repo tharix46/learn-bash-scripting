@@ -8,6 +8,14 @@
 # 2. Execute the script: ./03-url-checker.sh
 #########################################
 
+# Check if the url file exists
+url_file=03-urls.txt
+
+if [[ ! -f "$url_file" ]]; then
+    echo "❌ URL list file '$url_file' not found."
+    exit 1
+fi
+
 for url in $(cat 03-urls.txt); do
     status_code=$(curl -s -o /dev/null -w "%{http_code}" "$url")
 
