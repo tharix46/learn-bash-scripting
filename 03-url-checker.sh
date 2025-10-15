@@ -8,7 +8,7 @@
 # 2. Execute the script: ./03-url-checker.sh
 #########################################
 
-# Check if the url file exists
+# check if the url file exists
 url_file=03-urls.txt
 
 if [[ ! -f "$url_file" ]]; then
@@ -16,7 +16,8 @@ if [[ ! -f "$url_file" ]]; then
     exit 1
 fi
 
-for url in $(cat 03-urls.txt); do
+# check url status 
+while read url || [[ -n "$url" ]]; do
     status_code=$(curl -s -o /dev/null -w "%{http_code}" "$url")
 
     if [[ "$status_code" -ge 200 && "$status_code" -lt 400 ]]; then
@@ -24,4 +25,4 @@ for url in $(cat 03-urls.txt); do
     else
         printf "❌ %-50s [Status: %s]\n" "$url" "$status_code"
     fi
-done
+done < $url_file
