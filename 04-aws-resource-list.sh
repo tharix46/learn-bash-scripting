@@ -42,9 +42,9 @@ if ! command -v aws &> /dev/null; then
 fi
 
 # Check if the AWS CLI is configured
-if [[ ! -d ~/.aws ]]; then
-    echo "AWS CLI is not configured. Configure the AWS CLI and try again."
-    exit 1
+if ! aws sts get-caller-identity &>/dev/null; then
+  echo "AWS CLI is not configured or credentials are invalid."
+  exit 1
 fi
 
 # List the resources based on the service
