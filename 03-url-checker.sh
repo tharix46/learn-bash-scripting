@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
 #########################################
 # this script checks the status of URLs listed in 03-urls.txt
@@ -18,7 +19,7 @@ fi
 
 # check url status 
 while read url || [[ -n "$url" ]]; do
-    status_code=$(curl -s -o /dev/null -w "%{http_code}" "$url")
+    status_code=$(curl -s -o /dev/null -w "%{http_code}" "$url") || true
 
     if [[ "$status_code" -ge 200 && "$status_code" -lt 400 ]]; then
         printf "✅ %-50s [Status: %s]\n" "$url" "$status_code"
