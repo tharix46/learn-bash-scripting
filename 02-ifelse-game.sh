@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
 #########################################
 # this script is a simple game to understand if elif statements in bash
@@ -47,7 +48,7 @@ if ! [[ $user_num2 =~ ^[0-2]$ ]]; then
 elif [[ $user_num2 -eq $beast2_num ]]; then
     echo "Congratulations! You Won the Game!"
 # Special condition: If the user is root, they automatically win regardless of the number chosen.
-elif [[ $user_num2 -ne $beast2_num ]] && [[ $USER == "root" ]]; then
+elif [[ $user_num2 -ne $beast2_num ]] && [[ $(id -u) -eq 0 ]]; then
     echo "Root user always wins!"
 else
     echo "Sorry, you died. Correct number was $beast2_num."
