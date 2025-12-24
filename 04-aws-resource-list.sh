@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
 #########################################
 # this script automate the process of listing the resources in an AWS account
