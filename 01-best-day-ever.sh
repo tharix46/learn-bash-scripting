@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
 #########################################
 # this script is for get started with bash scripting
@@ -15,7 +16,7 @@ user=$(whoami)
 date_time=$(date)
 current_dir=$(pwd)
 
-echo -n "what's your name? "
+echo -ne "\nWhat's your name? "
 read -r name
 
 sleep 1
@@ -26,5 +27,5 @@ sleep 1
 echo "It's $date_time"
 echo "You're logged in as user $user"
 echo -e "You're in the $current_dir directory\n"
-curl -sL https://wttr.in/ | head -n 7
+curl -sL https://wttr.in/ | head -n 7 || true
 sleep 1
