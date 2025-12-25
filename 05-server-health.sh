@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
 #########################################
 # this script checks the health of servers listed in 05-servers.txt
@@ -18,12 +19,11 @@ if [[ ! -f "$server_file" ]]; then
     exit 1
 fi
 
-# loop through each server in the file and check its health
+# loop through each server in the file for check its health
 for server in $(cat "$server_file"); do
-    ssh_output=$(ssh -o ConnectTimeout=5 $server "uptime -p; top -bn1 | grep 'Cpu(s)'; free -m; df -h" 2>/dev/null)
 
-    # Check if the SSH command was successful and parse the output to get uptime, CPU usage, memory usage
-    if [[ $? -eq 0 ]]; then
+    # Check if the SSH command is successful and parse the output to get uptime, CPU usage, memory usage
+    if ssh_output=$(ssh -o ConnectTimeout=5 $server "uptime -p; top -bn1 | grep 'Cpu(s)'; free -m; df -h" 2>/dev/null); then
         # uptime
         uptime=$(echo "$ssh_output" | head -n 1)
 
