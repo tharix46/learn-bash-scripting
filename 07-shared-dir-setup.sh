@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+set -euo pipefail
 #########################################
 # this script sets up a shared directory with specified ownership and permissions.
 # to run this script:
@@ -9,16 +9,15 @@
 # eg: ./07-shared-dir-setup.sh /shared/dev tharindu developers
 #########################################
 
-DIR="$1"
-OWNER="$2"
-GROUP="$3"
-
 if [[ $# -ne 3 ]]; then
   echo "usage: $0 <directory_path> <owner> <group>"
   echo "eg: $0 /shared/dev john developers"
   exit 1
 fi 
 
+DIR="$1"
+OWNER="$2"
+GROUP="$3"
 
 # Create group if it doesn't exist
 if ! getent group "$GROUP" > /dev/null; then
