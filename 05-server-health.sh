@@ -20,10 +20,11 @@ if [[ ! -f "$server_file" ]]; then
 fi
 
 # loop through each server in the file for check its health
-for server in $(cat "$server_file"); do
+while read server || [[ -n "$server" ]]; do
+# for server in $(cat "$server_file"); do
 
     # Check if the SSH command is successful and parse the output to get uptime, CPU usage, memory usage
-    if ssh_output=$(ssh -o ConnectTimeout=5 $server "uptime -p; top -bn1 | grep 'Cpu(s)'; free -m; df -h" 2>/dev/null); then
+    if ssh_output=$(ssh -n -o ConnectTimeout=5 $server "uptime -p; top -bn1 | grep 'Cpu(s)'; free -m; df -h" 2>/dev/null); then
         # uptime
         uptime=$(echo "$ssh_output" | head -n 1)
 
@@ -43,4 +44,4 @@ for server in $(cat "$server_file"); do
     else
         printf "❌ %-10s  %-40s  \n" "$server" "unable to connect"
     fi
-done
+done < $server_file
