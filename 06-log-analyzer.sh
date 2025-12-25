@@ -14,8 +14,8 @@ set -euo pipefail
 
 # Check if the directory path is provided
 if [[ $# -ne 1 ]]; then
-  echo "usage: ./06-log-analyzer.sh <directory_path>"
-  echo "eg: ./06-log-analyzer.sh /myapp/logs"
+  echo "usage: $0 <directory_path>"
+  echo "eg: $0 /myapp/logs"
   exit 1
 fi
 
