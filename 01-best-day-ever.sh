@@ -22,7 +22,11 @@ user=$(whoami)
 date_time=$(date)
 current_dir=$(pwd)
 
+# -n for do not output the trailing newline
+# -e for enable interpretation of backslash escapes
 echo -ne "\nWhat's your name? "
+
+# -r for do not allow backslashes to escape any characters
 read -r name
 
 sleep 1
