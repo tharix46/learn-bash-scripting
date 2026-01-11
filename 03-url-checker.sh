@@ -18,6 +18,10 @@ if [[ ! -f "$url_file" ]]; then
 fi
 
 # check url status 
+
+# the '-n "$url"' test checks if $url is not empty (non-zero length string).
+# This ensures the last line is processed even if it doesn't end with a newline character.
+# The loop continues as long as either: (1) read succeeds, OR (2) $url contains a non-empty string.
 while read url || [[ -n "$url" ]]; do
     status_code=$(curl -s -o /dev/null -w "%{http_code}" "$url") || true
 
