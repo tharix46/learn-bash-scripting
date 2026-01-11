@@ -2,15 +2,15 @@
 set -euo pipefail
 
 #########################################
-# this script checks the status of URLs listed in 03-urls.txt
+# this script checks the status of URLs listed in 03-urls.txt (or the user can provide different URLs file)
 # and prints a message based on the HTTP status code.
 # to run this script: 
 # 1. Ensure the script has executable permissions: chmod +x 03-url-checker.sh
-# 2. Execute the script: ./03-url-checker.sh
+# 2. Execute the script: ./03-url-checker.sh or ./03-url-checker.sh <url-file-name.txt>
 #########################################
 
-# check if the url file exists
-url_file=03-urls.txt
+# get the url file or fallback to default file
+url_file="${1:-03-urls.txt}"
 
 if [[ ! -f "$url_file" ]]; then
     echo "❌ URL list file '$url_file' not found."
