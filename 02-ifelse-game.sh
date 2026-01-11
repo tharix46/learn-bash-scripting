@@ -2,7 +2,7 @@
 set -euo pipefail
 
 #########################################
-# this script is a simple game to understand if elif statements in bash
+# this script is a simple game to understand if else statements in bash
 # where the user has to guess numbers to defeat beasts
 # to run this script: 
 # 1. Ensure the script has executable permissions: chmod +x 02-ifelse-game.sh
