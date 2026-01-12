@@ -24,6 +24,7 @@ while read server || [[ -n "$server" ]]; do
 # for server in $(cat "$server_file"); do
 
     # Check if the SSH command is successful and parse the output to get uptime, CPU usage, memory usage
+    # '-n' in ssh command will redirect stdin from /dev/null. so, SSH will not wait for keyboard input
     if ssh_output=$(ssh -n -o ConnectTimeout=5 $server "uptime -p; top -bn1 | grep 'Cpu(s)'; free -m; df -h" 2>/dev/null); then
         # uptime
         uptime=$(echo "$ssh_output" | head -n 1)
