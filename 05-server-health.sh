@@ -21,7 +21,7 @@ fi
 
 # loop through each server in the file for check its health
 while read server || [[ -n "$server" ]]; do
-# for server in $(cat "$server_file"); do
+    [[ -z "$server" || "$server" =~ ^# ]] && continue
 
     # Check if the SSH command is successful and parse the output to get uptime, CPU usage, memory usage
     # '-n' in ssh command will redirect stdin from /dev/null. so, SSH will not wait for keyboard input
