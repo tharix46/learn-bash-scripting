@@ -39,7 +39,7 @@ for log_file in $log_files; do
     error_count=$(grep -c $error_pattern $log_file || true)
     display_pattern="${error_pattern//\\/}"
     echo -e "\n\n❗️ $display_pattern logs in $log_file [$error_count]"
-    grep ${error_pattern} $log_file || true
+    grep "$error_pattern" "$log_file" || true
 
     # If the error count is greater than or equal to 10, add a warning
     if [[ $error_count -ge 10 ]]; then
