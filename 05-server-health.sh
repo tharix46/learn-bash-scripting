@@ -11,7 +11,7 @@ set -euo pipefail
 # 4. Execute the script: ./05-server-health.sh
 #########################################
 
-server_file="05-servers.txt"
+server_file="${1:-05-servers.txt}"
 
 # Check if the file exists
 if [[ ! -f "$server_file" ]]; then
