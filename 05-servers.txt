@@ -1,3 +1,5 @@
-rhel1
-rhel2
-ubuntu
+# dev server
+ubuntu1
+
+# staging server
+ubuntu2
