@@ -23,6 +23,10 @@ fi
 # This ensures the last line is processed even if it doesn't end with a newline character.
 # The loop continues as long as either: (1) read succeeds, OR (2) $url contains a non-empty string.
 while read url || [[ -n "$url" ]]; do
+
+    # check if the $url is empty or is it a comment. if yes, then skip
+    [[ -z "$url" || "$url" =~ ^# ]] && continue
+    
     status_code=$(curl -s -o /dev/null -w "%{http_code}" "$url") || true
 
     if [[ "$status_code" -ge 200 && "$status_code" -lt 400 ]]; then
