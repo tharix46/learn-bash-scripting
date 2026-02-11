@@ -1,19 +1,22 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Check if the required number of arguments are passed
+# check if the required number of arguments are passed
 if (( $#!=2)); then 
   echo "usage: $0 <source dir> <target dir>"
   echo "eg: $0 /home/dir /backup"
   exit 1
 fi
 
-# Check if the rsync is installed
+# check if the rsync is installed
 if ! command -v rsync > /dev/null 2>&1; then
   echo "Error: rsync is not installed."
   echo "Please install rsync."
   exit 2
 fi
+
+# check if the target directory is there
+[[ -d "$2" ]] || { echo -e "\nCreating target directory..."; mkdir -p "$2"; }
 
 # get the date in the format YYYY-MM-DD
 backup_date=$(date +%F)
