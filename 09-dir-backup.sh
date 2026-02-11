@@ -10,8 +10,8 @@ fi
 
 # Check if the rsync is installed
 if ! command -v rsync > /dev/null 2>&1; then
-  echo "this script requires rsync to be installed."
-  echo "please install rsync."
+  echo "Error: rsync is not installed."
+  echo "Please install rsync."
   exit 2
 fi
 
@@ -25,6 +25,8 @@ dst_dir=$(realpath "$2")
 # log file
 log_file="dir-backup-$backup_date.log"
 
+echo -e "\nStarting backup from '$src_dir' to '$dst_dir'..."
+
 # rsync command to start backup 
 # -a : archive mode
 # -v : verbose
@@ -37,3 +39,4 @@ rsync -avb \
 "$src_dir/" \
 "$dst_dir/current/" >> "$log_file"
 
+echo -e "\n✅ Backup complete. Logs at '$log_file'"
