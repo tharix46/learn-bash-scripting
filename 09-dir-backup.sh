@@ -2,18 +2,10 @@
 set -euo pipefail
 
 # check if the required number of arguments are passed
-if (( $#!=2)); then 
-  echo "usage: $0 <source dir> <target dir>"
-  echo "eg: $0 /home/dir /backup"
-  exit 1
-fi
+(( $# == 2 )) || { echo "usage: $0 <source dir> <target dir>"; exit 1; }
 
 # check if the rsync is installed
-if ! command -v rsync > /dev/null 2>&1; then
-  echo "Error: rsync is not installed."
-  echo "Please install rsync."
-  exit 2
-fi
+command -v rsync > /dev/null 2>&1 || { echo "Error: rsync is not installed."; exit 2; }
 
 # check if the target directory is there
 [[ -d "$2" ]] || { echo -e "\nCreating target directory..."; mkdir -p "$2"; }
