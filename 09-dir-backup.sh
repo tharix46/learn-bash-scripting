@@ -1,6 +1,14 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+#########################################
+# this script backs up one directory to another using rsync 
+# and also keep older versions of files in dated directories.
+# to run this script: 
+# 1. Ensure the script has executable permissions: chmod +x 09-dir-backup.sh
+# 2. Execute the script: ./09-dir-backup.sh <source dir> <target dir>
+#########################################
+
 # check if the required number of arguments are passed
 (( $# == 2 )) || { echo "usage: $0 <source dir> <target dir>"; exit 1; }
 
