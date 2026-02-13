@@ -6,7 +6,10 @@ error_log_file=09-functions-errors.log
 
 run_cmd_safe() {
   # "$@" represents all arguments passed to the function (the command)
-  "$@" 2>> "$error_log_file"
+  # 2> >(...): This is Process Substitution. 
+  # It treats the code inside the parentheses as a file that stderr can write to.
+  "$@" 2> >( while read -r line; do echo "$(date '+%Y-%m-%d %H:%M:%S') - ERR: $line" >> "$error_log_file"; done )
+  
   local status=$?
 
   if (( $status != 0 )); then
@@ -19,7 +22,7 @@ run_cmd_safe() {
 }
 
 # function calling
-run_cmd_safe ls -l /home 
+run_cmd_safe ls -l /notexist
 
 
 
