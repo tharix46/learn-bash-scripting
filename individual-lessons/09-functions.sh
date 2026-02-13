@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-# a simple error logging function
-# pass the command as an argument to the function
 error_log_file=09-functions-errors.log
 
+# a simple error logging function
+# pass the command as an argument to the function
 run_cmd_safe() {
   # "$@" represents all arguments passed to the function (the command)
   # 2> >(...): This is Process Substitution. 
