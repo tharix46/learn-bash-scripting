@@ -12,12 +12,12 @@ error_log_file="updater-error.log"
 # update packages
 case "$ID" in
   ubuntu|debian|pop)
-    sudo apt update 2>> "$error_log_file"
-    sudo apt full-upgrade -y 2>> "$error_log_file"
+    sudo apt update >> "$log_file" 2>> "$error_log_file"
+    sudo apt full-upgrade -y >> "$log_file" 2>> "$error_log_file"
     ;;
   rhel|centos|rocky|almalinux|fedora)
-    sudo dnf makecache 2>> "$error_log_file"
-    sudo dnf update -y 2>> "$error_log_file"
+    sudo dnf makecache >> "$log_file" 2>> "$error_log_file"
+    sudo dnf update -y >> "$log_file" 2>> "$error_log_file"
     ;;
   *)
     echo "Unsupported OS: $ID"
