@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
 # check if sudo can be run without user entering password
 sudo -n true &> /dev/null || { echo "Non-interactive sudo access is required. No prompts are used"; exit 1; }
