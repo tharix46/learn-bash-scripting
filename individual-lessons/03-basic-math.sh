@@ -10,5 +10,5 @@ echo $substraction
 multiplication=$(( 20 * 10 ))
 echo $multiplication
 
-devision=$(( 20 / 10 ))
-echo $devision
+division=$(( 20 / 10 ))
+echo $division
