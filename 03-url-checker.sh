@@ -29,7 +29,7 @@ while read url || [[ -n "$url" ]]; do
     
     status_code=$(curl -s -o /dev/null -w "%{http_code}" "$url") || true
 
-    if [[ "$status_code" -ge 200 && "$status_code" -lt 400 ]]; then
+    if (( status_code >= 200 && status_code < 400 )); then
         printf "✅ %-50s [Status: %s]\n" "$url" "$status_code"
     else
         printf "❌ %-50s [Status: %s]\n" "$url" "$status_code"
