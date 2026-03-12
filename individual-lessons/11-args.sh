@@ -2,7 +2,7 @@
 
 # number of arguments is defined as '$#'
 # check if the number of arguments is exactly 1 or not
-if (( $#!=1 )); then
+if (( $# != 1 )); then
   echo "Please provide exactly one directory path as an argument"
   exit 1
 fi
