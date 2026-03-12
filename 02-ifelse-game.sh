@@ -47,7 +47,7 @@ if ! [[ $user_num2 =~ ^[0-2]$ ]]; then
     exit 1
 elif [[ $user_num2 -eq $beast2_num ]]; then
     echo "Congratulations! You Won the Game!"
-# Special condition: If the user is root, they automatically win regardless of the number chosen.
+# Special condition: If the user is root, they automatically win even if the number chosen is wrong.
 elif [[ $user_num2 -ne $beast2_num ]] && [[ $(id -u) -eq 0 ]]; then
     echo "Root user always wins!"
 else
