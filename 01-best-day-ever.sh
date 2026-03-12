@@ -11,7 +11,7 @@ set -euo pipefail
 # <verb> can be any action like "coding", "learning", "exploring", etc.
 #########################################
 
-if [ $# -ne 1 ]; then
+if (( $# != 1 )); then
   echo "usage: $0 <verb>"
   echo "eg: $0 coding"
   exit 1
