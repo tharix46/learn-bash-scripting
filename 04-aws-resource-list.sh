@@ -26,7 +26,7 @@ set -euo pipefail
 #########################################
 
 # Check if the required number of arguments are passed
-if [[ $# -ne 2 ]]; then
+if (( $# != 2 )); then
     echo "usage: $0 <aws_region> <aws_service>"
     echo "eg: $0 us-east-1 ec2"
     exit 1
