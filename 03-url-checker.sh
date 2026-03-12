@@ -27,7 +27,7 @@ while read url || [[ -n "$url" ]]; do
     # check if the $url is empty or is it a comment. if yes, then skip
     [[ -z "$url" || "$url" =~ ^# ]] && continue
     
-    status_code=$(curl -s -o /dev/null -w "%{http_code}" "$url") || true
+    status_code=$(curl --connect-timeout 10 -s -o /dev/null -w "%{http_code}" "$url") || true
 
     if (( status_code >= 200 && status_code < 400 )); then
         printf "✅ %-50s [Status: %s]\n" "$url" "$status_code"
