@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
+
 #########################################
 # this script sets up a shared directory with specified ownership and permissions.
 # to run this script:
@@ -14,6 +15,9 @@ if [[ $# -ne 3 ]]; then
   echo "eg: $0 /shared/dev john developers"
   exit 1
 fi 
+
+# check if sudo can be run without user entering password
+sudo -n true &> /dev/null || { echo "Non-interactive sudo access is required. No prompts are used"; exit 1; }
 
 DIR="$1"
 OWNER="$2"
