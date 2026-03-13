@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
+
 #########################################
 # this script analyzes log files updated in last 24 hours in a specified directory and checks for error patterns in the logs.
 # to run this script: 
@@ -13,7 +14,7 @@ set -euo pipefail
 #########################################
 
 # Check if the directory path is provided
-if [[ $# -ne 1 ]]; then
+if (( $# != 1 )); then
   echo "usage: $0 <directory_path>"
   echo "eg: $0 /myapp/logs"
   exit 1
@@ -36,22 +37,20 @@ echo "$log_files"
 # Loop through each log file and check for error patterns
 for log_file in $log_files; do
   for error_pattern in ${error_patterns[@]}; do  
-    error_count=$(grep -c $error_pattern $log_file || true)
+    error_count=$(grep -c "$error_pattern" "$log_file" || true)
     display_pattern="${error_pattern//\\/}"
-    echo -e "\n\n❗️ $display_pattern logs in $log_file [$error_count]"
+    echo -e "\n\n❗️ $display_pattern logs in $log_file - [$error_count]"
     grep "$error_pattern" "$log_file" || true
 
     # If the error count is greater than or equal to 10, add a warning
-    if [[ $error_count -ge 10 ]]; then
+    if (( $error_count >= 10 )); then
         warnings+=("⚠️  ALERT: $error_count $display_pattern logs in $log_file")
     fi
   done
 done
  
 # Print warnings if any
-if [[ ${#warnings[@]} -gt 0 ]]; then
+if (( ${#warnings[@]} > 0 )); then
   printf "\n%s\n" "${warnings[@]}"
 fi
-
-
 
