@@ -10,7 +10,7 @@ set -euo pipefail
 # eg: ./07-shared-dir-setup.sh /shared/dev tharindu developers
 #########################################
 
-if [[ $# -ne 3 ]]; then
+if (( $# != 3 )); then
   echo "usage: $0 <directory_path> <owner> <group>"
   echo "eg: $0 /shared/dev john developers"
   exit 1
