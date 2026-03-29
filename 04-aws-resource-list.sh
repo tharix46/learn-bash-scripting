@@ -7,7 +7,7 @@ set -euo pipefail
 # 1. EC2
 # 2. EBS
 # 3. S3 
-# 4. IAM
+# 4. IAM (users)
 # 5. VPC
 # 6. Route53
 # 7. RDS
@@ -61,8 +61,7 @@ case $aws_service in
         # aws ec2 describe-volumes --region $aws_region --query 'Volumes[*].[VolumeId,Size,State]' --output table --no-cli-pager
         ;;
     s3)
-        echo "Listing S3 Buckets in $aws_region"
-        aws s3api list-buckets --region $aws_region
+        aws s3api list-buckets --query 'Buckets[*].[Name,CreationDate,BucketArn]' --output table --region $aws_region
         ;;
     iam)
         aws iam list-users --query 'Users[*].[UserName,UserId,Arn]' --output table --region $aws_region
