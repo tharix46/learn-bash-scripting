@@ -65,8 +65,7 @@ case $aws_service in
         aws s3api list-buckets --region $aws_region
         ;;
     iam)
-        echo "Listing IAM Users in $aws_region"
-        aws iam list-users --region $aws_region
+        aws iam list-users --query 'Users[*].[UserName,UserId,Arn]' --output table --region $aws_region
         ;;
     vpc)
         echo "Listing VPCs in $aws_region"
